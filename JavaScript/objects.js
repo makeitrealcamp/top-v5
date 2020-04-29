@@ -68,6 +68,11 @@ let array7 = [ ...array1 ];
 let array8 = array1.slice(0);
 let array9 = Array.from(array1);
 
+// Iterar
+for(let val of array) {
+  console.log(val);
+}
+
 let object1 = { a: 1 };
 
 // Agregar un elemento
@@ -90,3 +95,12 @@ let object5 = { ...object1 };
 let object6 = Object.assign({}, object1);
 console.log(object1 !== object5);
 console.log(object1 !== object6);
+
+// Iterar
+for(let key in object) {
+  console.log(key);
+}
+
+for(let key in object) {
+  console.log(object[key]);
+}
