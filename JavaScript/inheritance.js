@@ -1,4 +1,4 @@
-function Car() {
+function Car(velocity) {
   this.velocity = 0;
 }
 
@@ -17,11 +17,11 @@ Car.prototype.break = function(amount) {
   return this;
 }
 
-function Bus() {};
-
-// function Bus() {
-//   Car.call(this);
-// }
+// function Bus() {}; // {}
+//vs
+function Bus() { // { velocity: 0 }
+  Car.call(this);
+}
 
 Bus.prototype = new Car();
 
@@ -29,6 +29,7 @@ Bus.prototype.beep = function() {
   return 'BEEP';
 }
 
-// const bus = new Bus();
+// const bus = new Bus(); { velocity: 0 } vs {}
+// bus.velocity;
 // bus.accelerate();
 // bus.beep();
