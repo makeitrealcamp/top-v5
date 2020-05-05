@@ -1,40 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import Counter from './components/Counter';
+import Repeater from './components/Repeater';
 import './App.css';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      count: 0,
-      name: ''
-    };
-
-    // this.handleClick = this.handleClick.bind(this);
-  }
-
-  // handleClick() {
-  //   console.log(this);
-  // }
-
-  handleClick = () => {
-    this.setState({ count: this.state.count + 1 });
-  }
-
-  handleChange = (event) => {
-    console.log(event.target.value);
-    this.setState({ name: event.target.value, count: 0 })
-  }
-
   render() {
+    console.log('App state', this.state)
     return (
       <div className="App">
-        <p>{this.state.count}</p>
-        <button onClick={this.handleClick}>Click me</button>
-        <p>{this.state.name}</p>
-        <input type="text" onChange={this.handleChange} value={this.state.name} />
-        {/* <input type="text" onChange={this.handleChange} /> */}
+        <Counter />
+        <Repeater />
+        {/* Repeater({ name: 'Simon', handleChange() {} }) */}
+        {/* <Repeater
+          name={this.state.name}
+          handleChange={this.handleChange}
+          lastname="hoyos"
+          age={28}
+          working
+          obj={{ a: 1, b: 2 }}
+        /> */}
       </div>
     );
   }
