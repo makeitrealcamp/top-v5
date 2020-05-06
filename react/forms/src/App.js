@@ -1,6 +1,37 @@
 import React from 'react';
 import logo from './logo.svg';
+import uuid from 'uuid-random';
 import './App.css';
+
+function Users({ collection }) {
+  console.log('users', collection)
+  if(!collection || collection.length <= 0) {
+    return (
+      <p>No hay usuarios creados</p>
+    );
+  }
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Lastname</th>
+        </tr>
+      </thead>
+      <tbody>
+        {collection.map(el => {
+          return (
+            <tr className="user" key={el.id}>
+              <td>{el.name} {el.lastname}</td>
+              <td>{el.age < 18 ? 'Menor de edad' : 'Mayor de edad'}</td>
+            </tr>
+          )
+        })}
+      </tbody>
+    </table>
+  );
+}
 
 class App extends React.Component {
   state = {
@@ -40,7 +71,7 @@ class App extends React.Component {
     console.log(e);
 
     const { name, lastname, age, terms } = this.state;
-    const user = { name, lastname, age, terms };
+    const user = { id: uuid(), name, lastname, age, terms };
     const users = this.state.users.concat(user)
 
     this.setState({
@@ -110,6 +141,7 @@ class App extends React.Component {
           <textarea></textarea> */}
           <button type="submit">Submit</button>
         </form>
+        <Users collection={this.state.users} />
       </div>
     );
   }
