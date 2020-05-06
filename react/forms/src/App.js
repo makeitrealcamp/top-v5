@@ -49,7 +49,15 @@ class App extends React.Component {
       lastname: '',
       age: 18,
       terms: false
-    }, () => console.log(this.state))
+    }, () => console.log(this.state));
+
+    // this.setState(({ name, lastname, age, terms, users }) => ({
+    //   users: users.concat({ name, lastname, age, terms }),
+    //   name: '',
+    //   lastname: '',
+    //   age: 18,
+    //   terms: false,
+    // }), () => console.log(this.state));
   }
 
   render() {
