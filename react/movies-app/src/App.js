@@ -9,8 +9,29 @@ import Popular from './pages/Popular';
 import NowPlaying from './pages/NowPlaying';
 import TopRated from './pages/TopRated';
 import Upcoming from './pages/Upcoming';
+import Login from './pages/Login';
 import NavBar from './components/NavBar';
 import './App.css';
+
+function PrivateRoute(props) {
+  const autenticated = localStorage.getItem('token');
+
+  if(!autenticated) return <Redirect to="/login" />;
+  return (
+    <Route {...props} />
+  );
+}
+
+function AdminRoute(props) {
+  const token = localStorage.getItem('token');
+  const isAdmin = token.isAdmin();
+
+  if(token && !isAdmin) return <Redirect to="/popular" />
+  if(!token && !isAdmin) return <Redirect to="/login" />
+  return (
+    <Route {...props} />
+  );
+}
 
 function App() {
   return (
@@ -18,11 +39,12 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path="/popular" component={Popular} />
-          <Route exact path="/popular/:page" component={Popular} />
-          <Route exact path="/now-playing" component={NowPlaying} />
-          <Route exact path="/top-rated" component={TopRated} />
-          <Route exact path="/upcoming" component={Upcoming} />
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/popular" component={Popular} />
+          <PrivateRoute exact path="/popular/:page" component={Popular} />
+          <PrivateRoute exact path="/now-playing" component={NowPlaying} />
+          <PrivateRoute exact path="/top-rated" component={TopRated} />
+          <AdminRoute exact path="/upcoming" component={Upcoming} />
           <Redirect from="*" to="/popular" />
         </Switch>
       </Router>
