@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card'
 import './App.css';
 
 // 1. Externos con CSS
@@ -21,6 +23,10 @@ const Heading = styled.h1`
 // const StyledLink = styled(Link)``;
 // const ExtendedBox = styled(Box)``;
 // const StyledComponent = styled(App)``;
+
+const StyledButton = styled(Button)`
+  background-color: red;
+`;
 
 function App({ className, show }) {
   // const hide = show ? 'App-show' : 'App-hide';
@@ -54,6 +60,12 @@ function App({ className, show }) {
         >
           Learn React
         </a>
+        <StyledButton size="lg">Click me</StyledButton>
+        <Card>
+          <Card.Body>
+            <Card.Title>Hola mundo</Card.Title>
+          </Card.Body>
+        </Card>
         <Box />
         <div></div>
       </header>
