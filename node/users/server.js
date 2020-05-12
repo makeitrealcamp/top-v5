@@ -17,14 +17,30 @@ let users = [];
 // DELETE /:id
 
 app.get('/', (req,res) => {
-  console.log(req);
-  res.status(200).json(users)
+  try {
+    res.status(200).json(users)
+  } catch (error) {
+    res.status(404).json({ message: 'Los usuarios no están disponibles en este momento' });
+  }
 });
 
 app.post('/', (req, res) => {
-  const user = { ...req.body, id: uuid() };
-  users.push(user);
-  res.status(200).json(user);
+  try {
+    // if(typeof(req.body.age) !== Number) {
+    //   throw TypeError('Información invalida');
+    // }
+
+    // if(req.body.name.length <= 5) {
+    //   throw new Error('Nombre muy corto');
+    // }
+
+    const user = { ...req.body, id: uuid() };
+    users.push(user);
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error)
+    res.status(400).json({ message: 'Información invalida' })
+  }
 });
 
 app.get('/:id', (req, res) => {
