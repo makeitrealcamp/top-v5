@@ -39,6 +39,20 @@ console.log(rest); // { c: 3, d: 4, e: 5 }
 let arr = [1,2,3,4,5,6,7,8,9,0];
 let [first, second, third, loquesea, ...rest] = arr;
 
+// const { data } = response;
+// const data = response.data;
+// const { name, age } = data;
+// const name = data.name;
+// const age = data.age;
+// const { data: { name, age } } = response;
+// const name = response.data.name;
+// const age = response.data.age;
+
+// const [ { name, age } ] = arr;
+// const name = arr[0].name;
+// const age = arr[0].age;
+
+
 console.log(first); // 1
 // arr[0];
 console.log(second); // 2
