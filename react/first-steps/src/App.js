@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import webpack from './assets/download.png';
 import './App.css';
 
 const name = 'Simon';
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <img src={webpack} />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
