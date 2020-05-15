@@ -1,20 +1,18 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const initDatabase = require('./src/db.js');
-const userController = require('./src/controllers/user.controller');
+const userRouter = require('./src/routes/user');
+
+const port = process.env.PORT || 8080;
 
 initDatabase();
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-function greetController(req, res) {
-  res.send('hello world')
-}
+app.use('/users', userRouter);
+// app.use('/images', imagesRouter);
+// app.use('/posts', postsRouter);
 
-app.get('/greet', greetController);
-
-app.post('/signup', userController.signup);
-app.post('/signin', userController.signin);
-
-app.listen(8080, () => console.log(`App running on http://localhost:8080`));
+app.listen(port, () => console.log(`App running on http://localhost:${port}`));

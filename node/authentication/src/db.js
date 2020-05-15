@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 
 function initDatabase() {
+  const mongoURI = process.env.MONGO_URI;
   const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   };
 
-  mongoose.connect('mongodb://localhost:27017/auth', options);
+  mongoose.connect(mongoURI, options);
 
   const { connection } = mongoose;
 
