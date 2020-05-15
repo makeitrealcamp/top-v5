@@ -32,8 +32,8 @@ class App extends React.Component {
     // Promesas
     // Pila o Stack PEUS (Primeros en Entrar, Ultimos en Salir)
     axios({
-      url: 'https://jsonplaceholder.typicode.com/todos',
-      method: 'GET'
+      url: process.env.REACT_APP_API_URL,
+      method: 'GET',
     })
       .then((response) => {
         this.setState({ tasks: response.data })
