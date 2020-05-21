@@ -30,7 +30,12 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/tasks" component={Tasks} />
+          <Route exact path="/tasks" render={(props) => (
+            <Tasks
+              {...props}
+              myOwnProp="my own prop"
+            />
+          )} />
           <Route exact path="/tasks/:id" component={TasksDetails} />
           <Route exact path="/images" component={Images} />
           <Route path="*" component={NotFound} />
