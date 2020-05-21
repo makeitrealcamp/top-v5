@@ -6,7 +6,7 @@ module.exports = {
   async greet(req, res) {
     const user = await User.findById(req.user.id);
 
-    res.send(`hello ${user.email}`)
+    res.json({ message: `Welcome ${user.email}` })
   },
   async signup(req, res) {
     try {
