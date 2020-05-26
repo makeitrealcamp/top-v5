@@ -16,6 +16,7 @@ module.exports = {
 
       const user = await User.create({ email: data.email, password });
       // No corre el código siguiente sin que se resuelva User.create
+      console.log(user)
 
       const token = jwt.sign(
         { id: user._id },
