@@ -2,22 +2,59 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios'
 
 const Stack = createStackNavigator();
 
 function Home({ navigation, name, lastname }) {
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    // AsyncStorage.setItem('token', 'asdfasdfasdfsd')
+
+    AsyncStorage.getItem('token')
+      .then(value => setToken(value))
+  }, []);
+
+  async function handleLogout() {
+    await AsyncStorage.removeItem('token');
+    setToken('');
+  }
+
+  async function handleLogin() {
+    const value = 'asdfasdfasdfsd';
+    await AsyncStorage.setItem('token', 'asdfasdfasdfsd');
+    setToken(value);
+  }
+
   return (
     <View style={styles.container}>
       <Text>Hola {name} {lastname}</Text>
-      <Button
-        title="Ver Posts"
-        onPress={() => navigation.navigate('Posts')}
-      />
-      <Button
-        title="Ver Perfil"
-        onPress={() => navigation.navigate('Profile')}
-      />
+      <Text>{token}</Text>
+      {
+        !token ? (
+          <Button
+            title="login"
+            onPress={handleLogin}
+          />
+        ) : (
+          <>
+            <Button
+              title="Ver Posts"
+              onPress={() => navigation.navigate('Posts')}
+            />
+            <Button
+              title="Ver Perfil"
+              onPress={() => navigation.navigate('Profile')}
+            />
+            <Button
+              title="Logout"
+              onPress={handleLogout}
+            />
+          </>
+        )
+      }
     </View>
   );
 }
@@ -31,6 +68,15 @@ function Posts({ navigation }) {
       url: 'https://jsonplaceholder.typicode.com/posts'
     })
       .then(({ data }) => setPosts(data));
+  }, []);
+
+  useEffect(() => {
+    AsyncStorage.getItem('token')
+      .then(value => {
+        if(!value) {
+          navigation.replace('Home')
+        }
+      })
   }, []);
 
   return (
@@ -110,17 +156,36 @@ function Profile({ navigation }) {
 }
 
 export default function App() {
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    AsyncStorage.getItem('token')
+      .then(value => setToken(value))
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home">
-          {props => (
-            <Home {...props} name="Simon" lastname="Hoyos" />
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="Posts" component={Posts} />
-        <Stack.Screen name="Post" component={Post} />
-        <Stack.Screen name="Profile" component={Profile} />
+        {
+          !token ? (
+            <Stack.Screen name="Home">
+              {props => (
+                <Home {...props} name="Simon" lastname="Hoyos" />
+              )}
+            </Stack.Screen>
+          ) : (
+            <>
+              <Stack.Screen name="Home">
+                {props => (
+                  <Home {...props} name="Simon" lastname="Hoyos" />
+                )}
+              </Stack.Screen>
+              <Stack.Screen name="Posts" component={Posts} />
+              <Stack.Screen name="Post" component={Post} />
+              <Stack.Screen name="Profile" component={Profile} />
+            </>
+          )
+        }
       </Stack.Navigator>
     </NavigationContainer>
   )
