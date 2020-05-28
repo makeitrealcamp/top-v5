@@ -13,3 +13,10 @@
 2. ¿Qué es un `side effect` en JavaScript?
 3. ¿Cómo funciona la herencia cuando trabajamos con **Prototipos**?
 4. [Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)
+
+## Mayo 28
+
+1. ¿En CSS qué es la especificidad y cuáles son las reglas para determinarla?
+2. ¿Qué es un middleware?
+3. ¿Qué es el Session Storage?
+4. [Maximum 69 Number](https://leetcode.com/problems/maximum-69-number/)
