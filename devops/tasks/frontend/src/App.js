@@ -22,6 +22,7 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
+        <p>Hola mundo</p>
         <label for="name">Nueva tarea 1</label>
         <input
           type="text"
