@@ -9,8 +9,10 @@ RUN apt update && apt install -y yarn
 
 COPY . .
 
-RUN yarn install
+RUN yarn install --production
+RUN yarn global add serve
+RUN yarn build
 
-EXPOSE 3000
+EXPOSE 5000
 
-CMD ["yarn", "start"]
+CMD ["serve", "build"]

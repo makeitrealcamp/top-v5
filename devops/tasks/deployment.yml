@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasksdeployment
+spec:
+  selector:
+    matchLabels:
+      app: taskslabel
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: taskslabel
+    spec:
+      containers:
+        - name: tasksbackend
+          imagePullPolicy: Never
+          image: tasks-backend
+          ports:
+            - containerPort: 8000
+        - name: tasksfrontend
+          imagePullPolicy: Never
+          image: tasks-frontend
+          ports:
+            - containerPort: 5000

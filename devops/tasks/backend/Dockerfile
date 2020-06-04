@@ -8,9 +8,9 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - echo "deb 
 RUN apt update && apt install -y yarn
 
 COPY . .
-RUN yarn install
+RUN yarn install --production
 
 EXPOSE 8000
 
-CMD ["yarn", "dev"]
+CMD ["yarn", "start"]
 
