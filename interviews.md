@@ -20,3 +20,12 @@
 2. ¿Qué es un middleware?
 3. ¿Qué es el Session Storage?
 4. [Maximum 69 Number](https://leetcode.com/problems/maximum-69-number/)
+
+## Junio 4
+
+1. ¿Qué es NPM?
+2. ¿Qué es hoisting?
+3. ¿Qué es el VDOM (Virtual DOM) y para qué se usa?
+4. ¿Cuáles son las principales diferencias entre una función flecha y una función declarativa?
+5. ¿Qué es una función pura?
+6. ¿Por qué es importante el uso del prop `key` en React?
