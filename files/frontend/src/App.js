@@ -10,27 +10,40 @@ function App() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const url = await uploadFile(file);
+    // const url = await uploadFile(file);
 
-  }
-
-  async function uploadFile(file) {
     const data = new FormData();
+    data.append('name', name);
     data.append('file', file, file.name);
-    data.append('upload_preset', 'lesson-preset');
 
-    const res = await axios({
+    await axios({
       method: 'POST',
-      baseURL: 'https://api.cloudinary.com/v1_1/simonmir',
-      url: '/image/upload',
+      baseURL: 'http://localhost:8000',
+      url: '/',
       headers: {
         'Content-Type': 'multipart/form-data'
       },
-      data
+      data,
     });
-
-    return res.data.url;
   }
+
+  // async function uploadFile(file) {
+  //   const data = new FormData();
+  //   data.append('file', file, file.name);
+  //   data.append('upload_preset', 'lesson-preset');
+
+  //   const res = await axios({
+  //     method: 'POST',
+  //     baseURL: 'https://api.cloudinary.com/v1_1/simonmir',
+  //     url: '/image/upload',
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data'
+  //     },
+  //     data
+  //   });
+
+  //   return res.data.url;
+  // }
 
   function readFile(file) {
     const reader = new FileReader();
@@ -41,8 +54,8 @@ function App() {
   function handleImage(e) {
     console.log(e.target.files[0])
     readFile(e.target.files[0]);
-    uploadFile(e.target.files[0]);
-    // setFile(e.target.files[0]);
+    // uploadFile(e.target.files[0]);
+    setFile(e.target.files[0]);
   }
 
   return (
@@ -68,8 +81,8 @@ function App() {
             onChange={handleImage}
           />
         </fieldset>
+        <button>Create</button>
       </form>
-      <button>Create</button>
       {image && (
         <img
           src={image}
@@ -78,7 +91,6 @@ function App() {
           height="300"
         />
       )}
-      <img src="https://res.cloudinary.com/simonmir/image/upload/v1591367476/mirlesson/t5w9llcxk6t8wuoestgu.jpg" />
     </div>
   );
 }
