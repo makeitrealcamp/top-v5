@@ -9,6 +9,14 @@ cloudinary.config({
 
 module.exports = {
   formData(req, res, next) {
+    let uploadingFile = false;
+
+    function done() {
+      if (uploadingFile) return;
+
+      next();
+    }
+
     const busboy = new Busboy({ headers: req.headers });
     req.body = {};
 
@@ -16,34 +24,35 @@ module.exports = {
       req.body[key] = val;
     });
 
-    busboy.on('file', (fieldname, file, filename) => {
+    busboy.on('file', (fieldname, file) => {
+      uploadingFile = true;
+
       const stream = cloudinary.uploader.upload_stream(
-        { upload_preset: process.env.CLOUDINARY_PRESET },
-        (error, result) => {
-          if(error) {
-            throw Error('Algo salio mal');
+        { upload_preset: 'lesson-preset' },
+        (err, res) => {
+          if(err) {
+            throw Error('Algo salió mal');
           }
 
-          req.body[fieldname] = result;
-          next();
+          req.body[fieldname] = res;
+          uploadingFile = false;
+          done();
         }
       );
 
-      file.on('data', (data) => {
+      file.on('data', data => {
         stream.write(data);
       });
+
       file.on('end', () => {
         stream.end();
-      });
+      })
     });
 
-    // busboy.on('finish', () => {
-    //   if(!file) next();
-    // });
+    busboy.on('finish', () => {
+      done();
+    });
 
     req.pipe(busboy);
-  },
-  uploadImage(req, res, next) {
-
   }
 }
