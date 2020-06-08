@@ -6,7 +6,7 @@
 [Dev Ed](https://www.youtube.com/channel/UClb90NQQcskPUGDIXsQEz5Q)
 [Fireship](https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA)
 [freeCodeCamp.org](https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ)
-[Web Dev Simplified](https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ)
+[Web Dev Simplified](https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)
 
 ## Blogs
 
@@ -37,3 +37,8 @@
 ## Apps
 
 [Feedly](https://feedly.com/)
+
+## Syllabus
+
+[Syllabus](https://docs.google.com/document/d/1a9EbdM9fnO80SGZo7kaVhSjojalbWywX0kUGm4Pg_kU)
+[Videos](https://makeitreal.s3.amazonaws.com/videos/top-v5/day-date-time.mp4)
