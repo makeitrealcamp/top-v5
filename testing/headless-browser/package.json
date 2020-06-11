@@ -1,0 +1,9 @@
+{
+  "name": "headless-browser",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "puppeteer": "^3.3.0"
+  }
+}
