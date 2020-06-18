@@ -29,3 +29,10 @@
 4. ¿Cuáles son las principales diferencias entre una función flecha y una función declarativa?
 5. ¿Qué es una función pura?
 6. ¿Por qué es importante el uso del prop `key` en React?
+
+## Junio 18
+
+1. ¿Qué es un contenedor y para que sirve (Docker)?
+2. ¿Cuál es la diferencia entre `Unit testing` e `Integration testing`?
+3. ¿Qué es TDD?
+4. [Find Lucky Integer in an Array](https://leetcode.com/problems/find-lucky-integer-in-an-array/)
