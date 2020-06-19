@@ -76,12 +76,49 @@ function Response({ location }) {
   )
 }
 
+function Token() {
+  async function handleToken() {
+    const { data } = await axios({
+      method: 'POST',
+      url: 'https://api.secure.payco.co/v1/auth/login',
+      data: {
+        public_key: process.env.REACT_APP_EPAYCO_PUBLIC_KEY,
+        private_key: process.env.REACT_APP_EPAYCO_PRIVATE_KEY,
+      }
+    });
+
+    console.log('data', data.bearer_token);
+
+    const cardInfo = {
+      "card[number]": "4575623182290326",
+      "card[exp_year]": "2025",
+      "card[exp_month]": "12",
+      "card[cvc]": "123"
+    };
+
+    await axios({
+      method: 'POST',
+      url: 'https://api.secure.payco.co/v1/tokens',
+      data: cardInfo,
+      headers: {
+        'Authorization': `Bearer ${data.bearer_token}`,
+        type: 'sdk-jwt'
+      }
+    });
+  }
+
+  return (
+    <button onClick={handleToken}>Guardar tarjeta</button>
+  )
+}
+
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={Payment} />
         <Route exact path="/response" component={Response} />
+        <Route exact path="/token" component={Token} />
       </Switch>
     </Router>
   )
