@@ -28,7 +28,19 @@ const db = {
 db.User = db.sequelize.import(
   'user',
   // userModel,
-  require('./models/user.model'),
+  require('./models/user.model')
 );
+
+db.Recipe = db.sequelize.import(
+  'recipe',
+  require('./models/recipe.model')
+);
+
+for(let key in db) {
+  if(db[key].associate) {
+    console.log('associate')
+    db[key].associate(db);
+  }
+}
 
 module.exports = db;

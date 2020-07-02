@@ -1,8 +1,8 @@
-const { User } = require('../db');
+const { User, Recipe } = require('../db');
 
 module.exports = {
   async list(req, res) {
-    const users = await User.findAll();
+    const users = await User.scope({ attributes: { include: ['name'] } }).findAll();
     res.status(200).json(users);
   },
   async create(req, res) {
@@ -11,7 +11,7 @@ module.exports = {
   },
   async show(req, res) {
     const { id } = req.params;
-    const user = await User.findByPk(id);
+    const user = await User.scope({ include: [Recipe] }).findByPk(id);
     res.status(200).json(user);
   },
   async update(req, res) {

@@ -18,9 +18,18 @@ module.exports = (sequelize, DataTypes) => {
   const userOps = {
     tableName: 'users',
     timestamps: true,
+    defaultScope: {
+      attributes: {
+        exclude: ['name'],
+      }
+    }
   };
 
   const User = sequelize.define('User', userSchema, userOps);
+
+  User.associate = (db) => {
+    db.User.hasMany(db.Recipe);
+  };
 
   return User;
 }
