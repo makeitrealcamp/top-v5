@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       noEmpty: true,
     },
+    description: {
+      type: DataTypes.STRING,
+    }
   };
 
   const recipeOps = {
